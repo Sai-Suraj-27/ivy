@@ -986,7 +986,7 @@ def test_torch_einsum(
     kw = {}
     for i, x_ in enumerate(operands):
         dtype = dtypes[i][0]
-        kw["x{}".format(i)] = np.array(x_).astype(dtype)
+        kw[f"x{i}"] = np.array(x_).astype(dtype)
     test_flags.num_positional_args = len(operands) + 1
     helpers.test_frontend_function(
         input_dtypes=dtypes,
@@ -1332,7 +1332,7 @@ def test_torch_atleast_2d(
     input_dtype, arrays = dtype_and_x
     arys = {}
     for i, (array, idtype) in enumerate(zip(arrays, input_dtype)):
-        arys["arrs{}".format(i)] = array
+        arys[f"arrs{i}"] = array
     test_flags.num_positional_args = len(arys)
     helpers.test_frontend_function(
         input_dtypes=input_dtype,
@@ -1415,7 +1415,7 @@ def test_torch_atleast_3d(
     input_dtype, arrays = dtype_and_x
     arys = {}
     for i, array in enumerate(arrays):
-        arys["arrs{}".format(i)] = array
+        arys[f"arrs{i}"] = array
     test_flags.num_positional_args = len(arys)
     helpers.test_frontend_function(
         input_dtypes=input_dtype,
