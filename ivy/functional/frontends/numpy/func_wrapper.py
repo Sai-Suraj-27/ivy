@@ -23,7 +23,7 @@ def _assert_array(args, dtype, scalar_check=False, casting="safe"):
                     x, ivy.as_ivy_dtype(dtype), casting=casting
                 ),
                 type="all",
-                message="type of input is incompatible with dtype: {}".format(dtype),
+                message=f"type of input is incompatible with dtype: {dtype}",
             )
         else:
             assert_fn = None if casting == "safe" else ivy.exists
@@ -43,9 +43,7 @@ def _assert_array(args, dtype, scalar_check=False, casting="safe"):
                         )
                     ),
                     type="all",
-                    message="type of input is incompatible with dtype: {}".format(
-                        dtype
-                    ),
+                    message=f"type of input is incompatible with dtype: {dtype}",
                 )
 
 
@@ -65,7 +63,7 @@ def _assert_no_array(args, dtype, scalar_check=False, none=False):
             *args,
             fn=assert_fn,
             type="all",
-            message="type of input is incompatible with dtype: {}".format(dtype),
+            message=f"type of input is incompatible with dtype: {dtype}",
         )
 
 
@@ -74,9 +72,9 @@ def _assert_no_scalar(args, dtype, none=False):
         first_arg = args[0]
         ivy.utils.assertions.check_all_or_any_fn(
             *args,
-            fn=lambda x: type(x) == type(first_arg),
+            fn=lambda x: type(x) is type(first_arg),
             type="all",
-            message="type of input is incompatible with dtype {}".format(dtype),
+            message=f"type of input is incompatible with dtype {dtype}",
         )
         if dtype:
             if ivy.is_int_dtype(dtype):
@@ -88,17 +86,17 @@ def _assert_no_scalar(args, dtype, none=False):
             ivy.utils.assertions.check_equal(
                 type(args[0]),
                 check_dtype,
-                message="type of input is incompatible with dtype {}".format(dtype),
+                message=f"type of input is incompatible with dtype {dtype}",
                 as_array=False,
             )
             if ivy.as_ivy_dtype(dtype) not in ["float64", "int8", "int64", "uint8"]:
-                if type(args[0]) == int:
+                if type(args[0]) is int:
                     ivy.utils.assertions.check_elem_in_list(
                         dtype,
                         ["int16", "int32", "uint16", "uint32", "uint64"],
                         inverse=True,
                     )
-                elif type(args[0]) == float:
+                elif type(args[0]) is float:
                     ivy.utils.assertions.check_equal(
                         dtype, "float32", inverse=True, as_array=False
                     )
@@ -108,16 +106,16 @@ def _assert_scalar(args, dtype):
     if args and dtype:
         assert_fn = None
         if ivy.is_int_dtype(dtype):
-            assert_fn = lambda x: type(x) != float
+            assert_fn = lambda x: type(x) is not float
         elif ivy.is_bool_dtype(dtype):
-            assert_fn = lambda x: type(x) == bool
+            assert_fn = lambda x: type(x) is bool
 
         if assert_fn:
             ivy.utils.assertions.check_all_or_any_fn(
                 *args,
                 fn=assert_fn,
                 type="all",
-                message="type of input is incompatible with dtype: {}".format(dtype),
+                message=f"type of input is incompatible with dtype: {dtype}",
             )
 
 
