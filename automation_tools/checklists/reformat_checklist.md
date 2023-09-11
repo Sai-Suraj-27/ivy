@@ -30,7 +30,7 @@ The [Ivy Docs](https://unify.ai/docs/ivy/) represent the ground truth for the ta
        1. - [ ] ❌:   <a name="ref1"></a> The function's [Array API standard](https://data-apis.org/array-api/latest/index.html) description in [ivy/functional/{{ .category_name }}.py](https://github.com/unifyai/ivy/blob/main/ivy/functional/ivy/{{ .category_name }}.py). If the function is not part of the Array API standard then a description of similar style should be added to the same file.
 	The following modifications should be made to the description:
               - [ ] ❌:  Remove type definitions in the `Parameters` and `Returns` sections.
-              - [ ] ❌:  Add `out` to the `Parameters` section if function accepts an `out` argument.
+              - [ ] ❌:  Add `out` to the `Parameters` section if the function accepts an `out` argument.
               - [ ] ❌:  Replace `out` with `ret` in the `Returns` section.
        2. - [ ] ❌:  Reference to docstring for ivy.function_name ([5.a](#ref1)) for the function description **and** modified `Parameters` and `Returns` sections as described in [the docs](https://unify.ai/docs/ivy/overview/deep_dive/docstrings.html#docstrings) in:
               - [ ] ❌:  [ivy/array/{{ .category_name }}.py](https://github.com/unifyai/ivy/blob/main/ivy/data_classes/array/{{ .category_name }}.py).
@@ -43,7 +43,7 @@ The [Ivy Docs](https://unify.ai/docs/ivy/) represent the ground truth for the ta
 
 		**Functional Examples** in [ivy/functional/{{ .category_name }}.py](https://github.com/unifyai/ivy/blob/main/ivy/functional/ivy/{{ .category_name }}.py).
 
-		1. - [ ] ❌: Cover all possible variants for each of the arguments independently (not combinatorily).
+		1. - [ ] ❌: Cover all possible variants for each of the arguments independently (not combinatorially).
 	 	2. - [ ] ❌: Vary the values and input shapes considerably between examples.
 	 	3. - [ ] ❌: Start out simple and get more complex with each example.
 	 	4. - [ ] ❌: Show an example with:
