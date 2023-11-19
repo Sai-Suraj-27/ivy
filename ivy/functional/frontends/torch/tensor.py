@@ -142,7 +142,7 @@ class Tensor:
                 return torch_frontend.reshape(self, shape)
             else:
                 return torch_frontend.reshape(self, args)
-        return torch_frontend.reshape(self)
+        return torch_frontend.reshape(self, shape)
 
     @with_unsupported_dtypes({"2.1.1 and below": ("bfloat16",)}, "torch")
     @with_unsupported_dtypes({"2.5.1 and below": ("float16",)}, "paddle")

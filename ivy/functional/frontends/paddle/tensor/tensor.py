@@ -194,7 +194,7 @@ class Tensor:
                 return paddle_frontend.reshape(self, shape)
             else:
                 return paddle_frontend.reshape(self, args)
-        return paddle_frontend.reshape(self)
+        return paddle_frontend.reshape(self, shape)
 
     def dim(self):
         return self.ivy_array.ndim
