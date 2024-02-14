@@ -356,6 +356,19 @@ def tile(
         tiled_shape = tuple(s * r for s, r in zip(x.shape, repeats))
         result = paddle.reshape(tiled_reshaped_tensor, tiled_shape)
         return result
+
+    elif len(repeats) >= 7:
+        new_repeats = repeats[:5] + [math.prod(repeats[5:])]
+        tiled_tensor = paddle.tile(x, new_repeats)
+        x_shape = x.shape
+        n = len(repeats)
+        m = len(x_shape)
+        tiled_shape = [repeats[n - i - 1] * x_shape[m - i - 1] for i in range(m)]
+        tiled_shape = list(reversed(tiled_shape))
+        repeats[n - m :] = tiled_shape
+        result = paddle.reshape(tiled_tensor, repeats)
+        return result
+
     if ivy.min(repeats) == 0:
         # This logic is to mimic other backends behaviour when a 0 in repeat
         # is received since paddle doesn't natively support it
